@@ -1,4 +1,8 @@
 package org.example.drivenow_carrental_aad.repo;
 
-public interface UserRepository {
+import org.example.drivenow_carrental_aad.dto.UserDto;
+import org.example.drivenow_carrental_aad.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, String> {
 }
