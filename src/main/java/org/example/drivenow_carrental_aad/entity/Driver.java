@@ -1,13 +1,19 @@
-package org.example.drivenow_carrental_aad.dto;
+package org.example.drivenow_carrental_aad.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DriverDto {
+@Data
+@ToString
+@Entity
+public class Driver {
+@Id
     private String driverId;
     private String name;
     private String address;
@@ -17,5 +23,4 @@ public class DriverDto {
     private String email;
     private String username;
     private String password;
-
 }
