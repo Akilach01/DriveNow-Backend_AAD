@@ -16,6 +16,7 @@ public class VehicleDto {
     private String year;
     private String category;
     private String colour;
+    private String sideView;
     private String fuelType;
     private String licensePlate;
     private int seats;

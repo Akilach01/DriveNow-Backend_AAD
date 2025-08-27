@@ -4,17 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DriverDto {
-    private String driverId;
-    private String name;
-    private String address;
-    private String nic;
-    private String contact;
-    private String status;
-    private String email;
+@Data
+public class AdminDto {
+    private String adminId;
+    private String username;
     private String password;
-
+    private String email;
+    private String name;
+    private String contact;
 }
