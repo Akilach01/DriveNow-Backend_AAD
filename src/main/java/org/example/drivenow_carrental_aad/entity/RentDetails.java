@@ -1,6 +1,8 @@
 package org.example.drivenow_carrental_aad.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,10 +15,10 @@ import org.example.drivenow_carrental_aad.dto.VehicleDto;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@ToString
 @Entity
 public class RentDetails {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String rentId;
     private String date;
     private String pickupDate;
