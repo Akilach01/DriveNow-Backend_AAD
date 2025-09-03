@@ -1,4 +1,6 @@
 package org.example.drivenow_carrental_aad.service.impl;
 
-public class AdminServiceImpl {
+import org.example.drivenow_carrental_aad.service.AdminService;
+
+public class AdminServiceImpl implements AdminService {
 }
