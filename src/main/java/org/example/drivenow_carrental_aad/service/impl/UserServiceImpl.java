@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserServiceImpl implements UserService {
 
@@ -47,36 +48,51 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto createUser(UserDto userDto) {
-        return null;
+        User saved = userRepository.save(mapToEntity(userDto));
+        return mapToDto(saved);
     }
 
     @Override
     public UserDto updateUser(Long id, UserDto userDto) {
-        return null;
+        return userRepository.findById(id).map(user -> {
+            user.setFirstName(userDto.getFirstName());
+            user.setLastName(userDto.getLastName());
+            user.setAddress(userDto.getAddress());
+            user.setContact(userDto.getContact());
+            user.setNicNo(userDto.getNicNo());
+            user.setUserName(userDto.getUserName());
+            user.setEmail(userDto.getEmail());
+            user.setPassword(userDto.getPassword());
+            user.setStatus(userDto.getStatus());
+            return mapToDto(userRepository.save(user));
+        }).orElse(null);
+
     }
 
     @Override
     public UserDto getUserById(Long id) {
-        return null;
+        return userRepository.findById(id).map(this::mapToDto).orElse(null);
     }
 
     @Override
     public List<UserDto> getAllUsers() {
-        return List.of();
+       return userRepository.findAll().stream().map(this::mapToDto).collect(Collectors.toList());
     }
 
     @Override
     public void deleteUser(Long id) {
-
+        userRepository.deleteById(id);
     }
 
     @Override
     public User getByEmail(String email) {
-        return null;
+        User user = userRepository.findByEmail(email);
+        return user != null ? mapToDto(user):null ;
     }
 
     @Override
     public User getByUsername(String username) {
-        return null;
+        User user = userRepository.findByUsername(username);
+        return user != null ? mapToDto(user) : null;
     }
 }
