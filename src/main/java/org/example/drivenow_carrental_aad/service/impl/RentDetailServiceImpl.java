@@ -1,8 +1,14 @@
 package org.example.drivenow_carrental_aad.service.impl;
 
 import org.example.drivenow_carrental_aad.dto.RentDetailsDto;
+import org.example.drivenow_carrental_aad.entity.Driver;
 import org.example.drivenow_carrental_aad.entity.RentDetails;
+import org.example.drivenow_carrental_aad.entity.User;
+import org.example.drivenow_carrental_aad.entity.Vehicle;
+import org.example.drivenow_carrental_aad.repo.DriverRepository;
 import org.example.drivenow_carrental_aad.repo.RentRepository;
+import org.example.drivenow_carrental_aad.repo.UserRepository;
+import org.example.drivenow_carrental_aad.repo.VehicleRepository;
 import org.example.drivenow_carrental_aad.service.RentDetailService;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +31,22 @@ public class RentDetailServiceImpl implements RentDetailService {
         rent.setReturnDate(dto.getReturnDate());
         rent.setPayment(dto.getPayment());
         rent.setStatus("pending");
+
+        if (dto.getUser() != null && dto.getUser().getUserId() != null) {
+            User user = UserRepository.findById(dto.getUser().getUserId())
+                    .orElseThrow(()->new RuntimeException("user not found !"));
+            rent.setUser(user);
+        }
+        if (dto.getVehicle() != null && dto.getVehicle().getVehicleId() != null) {
+            Vehicle vehicle = VehicleRepository.findById(dto.getVehicle().getVehicleId())
+                    .orElseThrow(()->new RuntimeException("vehicle not found !"));
+            rent.setVehicle(vehicle);
+        }
+        if (dto.getDriver() != null && dto.getDriver().getDriverId() != null) {
+            Driver driver = DriverRepository.findById(dto.getDriver().getDriverId())
+                    .orElseThrow(()->new RuntimeException("driver not found !"));
+            rent.setDriver(driver);
+        }
 
         RentDetails saved = repository.save(rent);
 

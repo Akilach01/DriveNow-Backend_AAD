@@ -13,7 +13,7 @@ import lombok.Setter;
 
 public class UserDto {
 
-    private String userId;
+    private Long userId;
     private String firstName;
     private String lastName;
     private String address;
