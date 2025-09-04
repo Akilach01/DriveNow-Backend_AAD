@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class RentDetailsDto {
-    private String rentId;
+    private Long rentId;
     private String date;
     private String pickupDate;
     private String returnDate;

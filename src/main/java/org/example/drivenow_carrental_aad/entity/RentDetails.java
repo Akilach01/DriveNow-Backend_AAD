@@ -19,7 +19,7 @@ import org.example.drivenow_carrental_aad.dto.VehicleDto;
 public class RentDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String rentId;
+    private Long rentId;
     private String date;
     private String pickupDate;
     private String returnDate;

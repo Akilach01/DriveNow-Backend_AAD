@@ -3,5 +3,5 @@ package org.example.drivenow_carrental_aad.repo;
 import org.example.drivenow_carrental_aad.entity.RentDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RentRepository extends JpaRepository<RentDetails, String> {
+public interface RentRepository extends JpaRepository<RentDetails, Long> {
 }
