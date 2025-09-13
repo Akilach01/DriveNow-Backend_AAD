@@ -11,5 +11,6 @@ public interface RentDetailService {
     RentDetailsDto createBooking(RentDetailsDto rentDetailsDto);
     List<RentDetailsDto> getAllBookings();
  RentDetailsDto getBookingById(Long id);
+ RentDetailsDto cancelBooking(Long id);
 
 }
