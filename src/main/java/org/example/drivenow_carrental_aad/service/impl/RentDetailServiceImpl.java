@@ -18,9 +18,17 @@ import java.util.stream.Collectors;
 @Service
 public class RentDetailServiceImpl implements RentDetailService {
 
-    private final RentRepository repository;
-    public RentDetailServiceImpl(RentRepository repository) {
-        this.repository = repository;
+    private final RentRepository rentRepository;
+    private final UserRepository userRepository;
+    private final VehicleRepository vehicleRepository;
+    private final DriverRepository driverRepository;
+    
+
+    public RentDetailServiceImpl(RentRepository repository,UserRepository userRepository,VehicleRepository vehicleRepository,DriverRepository driverRepository) {
+        this.rentRepository = rentRepository;
+        this.userRepository = userRepository;
+        this.vehicleRepository = vehicleRepository;
+        this.driverRepository = driverRepository;
     }
 
     @Override
@@ -48,7 +56,7 @@ public class RentDetailServiceImpl implements RentDetailService {
             rent.setDriver(driver);
         }
 
-        RentDetails saved = repository.save(rent);
+        RentDetails saved = rentRepository.save(rent);
 
         dto.setRentId(saved.getRentId());
         dto.setStatus(saved.getStatus());
@@ -82,5 +90,22 @@ public class RentDetailServiceImpl implements RentDetailService {
             dto.setStatus(rent.getStatus());
             return dto;
                 }).orElse(null);
+    }
+
+    @Override
+    public RentDetailsDto cancelBooking(Long id){
+        RentDetails rent = rentRepository.findById(id).orElseThrow())->new RuntimeException("booking not found"));
+    rent.setStatus("canceled");
+    RentDetails updated = rentRepository.save(rent);
+
+    RentDetailsDto dto = new RentDetailsDto();
+
+        dto.setRentId(updated.getRentId());
+        dto.setDate(updated.getDate());
+        dto.setPickupDate(updated.getPickupDate());
+        dto.setReturnDate(updated.getReturnDate());
+        dto.setPayment(updated.getPayment());
+        dto.setStatus(updated.getStatus());
+        return dto;
     }
 }
