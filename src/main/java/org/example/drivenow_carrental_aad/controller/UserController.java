@@ -36,13 +36,23 @@ public class UserController {
         return userService.getAllUsers();
     }
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/{id]")
+    @PutMapping("/{id}")
     public UserDto updateUser(@PathVariable Long id, @RequestBody UserDto dto) {
         return userService.updateUser(id, dto);
     }
+
+    @PreAuthorize("hasRole('USER')")
+    @PutMapping("/me")
+    public UserDto updateOwnProfile(@RequestBody UserDto dto){
+        return UserService.updateOwnProfile(dto);
+    }
+
+
+
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }
 }
+

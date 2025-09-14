@@ -16,20 +16,27 @@ public class RentDetailsController {
     public RentDetailsController(RentDetailService service) {
         this.service = service;
     }
+
     @PreAuthorize("hasRole('USER')")
 @PostMapping
     public RentDetailsDto createBooking(@RequestBody RentDetailsDto rentDetails) {
         return service.createBooking(rentDetails);
 }
 
-    @PreAuthorize("hasRole('ADMIN')")
+@PreAuthorize("hasRole('ADMIN')")
 @GetMapping
     public List<RentDetailsDto> getAllBookings() {
         return service.getAllBookings();
 }
-    @PreAuthorize("hasAnyRole('USER','ADMIN')")
+
+@PreAuthorize("hasAnyRole('USER','ADMIN')")
 @GetMapping("/{id}")
     public RentDetailsDto getBooking(@PathVariable Long id) {
         return service.getBookingById(id);
+}
+@PreAuthorize("hasRole('USER')")
+    @PutMapping("/{id}/cancel")
+    public RentDetailsDto cancelBooking(@PathVariable Long id){
+        return service.cancelBooking(id);
 }
 }
