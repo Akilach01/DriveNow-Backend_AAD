@@ -1,9 +1,10 @@
 package org.example.drivenow_carrental_aad.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import ch.qos.logback.core.status.Status;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,13 +17,27 @@ import lombok.ToString;
 public class Driver {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String driverId;
+    private Long driverId;
+
+    @NotBlank
     private String name;
+
     private String address;
+
+    @NotBlank
+    @Pattern(regexp = "\\d{9}[vV]|\\d{12}")
     private String nic;
+
+    @NotBlank
+    @Pattern(regexp = "\\+?\\d{10,15}")
     private String contact;
-    private String status;
+
+    @NotBlank
+    @Email
     private String email;
-    private String username;
-    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    public enum Status{AVAILABLE, BUSY}
 }
