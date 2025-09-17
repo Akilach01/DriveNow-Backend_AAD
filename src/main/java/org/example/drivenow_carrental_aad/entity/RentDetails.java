@@ -1,6 +1,11 @@
 package org.example.drivenow_carrental_aad.entity;
 
+import ch.qos.logback.core.status.Status;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +13,9 @@ import lombok.ToString;
 import org.example.drivenow_carrental_aad.dto.DriverDto;
 import org.example.drivenow_carrental_aad.dto.UserDto;
 import org.example.drivenow_carrental_aad.dto.VehicleDto;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,11 +25,23 @@ public class RentDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long rentId;
-    private String date;
-    private String pickupDate;
-    private String returnDate;
-    private String status;
-    private String payment;
+
+    @NotNull
+    private LocalDate date;
+
+    @NotNull
+    @FutureOrPresent
+    private LocalDate pickupDate;
+
+    @NotNull
+    @Future
+    private LocalDate returnDate;
+
+@Enumerated(EnumType.STRING)
+    private Status status;
+
+@Positive
+    private BigDecimal payment;
 
     //vehicle
     @ManyToOne(fetch = FetchType.LAZY)
@@ -37,5 +57,7 @@ public class RentDetails {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "driver_id")
     private Driver driver;
+
+    public enum Status{PENDING, APPROVED, CANCELLED}
 
 }
