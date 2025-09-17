@@ -108,4 +108,24 @@ public class RentDetailServiceImpl implements RentDetailService {
         dto.setStatus(updated.getStatus());
         return dto;
     }
+
+    @Override
+    public RentDetailsDto approveBooking(Long id) {
+        return null;
+    }
+
+    @Override
+    public RentDetailsDto rejectBooking(Long id) {
+        return null;
+    }
+
+    @Override
+    public RentDetailsDto assignDriver(Long bookingId, Long driverId) {
+        return null;
+    }
+
+    @Override
+    public List<RentDetailsDto> getUserBookings() {
+        return List.of();
+    }
 }
