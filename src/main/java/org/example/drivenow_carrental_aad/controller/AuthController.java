@@ -52,8 +52,8 @@ public class AuthController {
         user.setUserName(signupRequest.getUserName());
         user.setStatus("ACTIVE");
 
-//        Role userRole = roleRepository.findByName("ROLE_USER");
-//        user.setRoles(Collections.singleton(userRole));
+        Role userRole = roleRepository.findByName("ROLE_USER");
+        user.setRoles(Collections.singleton(userRole));
 
         userRepository.save(user);
         return "User Registered Successfully!";

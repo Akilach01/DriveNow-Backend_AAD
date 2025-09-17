@@ -9,9 +9,6 @@ import java.util.List;
 @Service
 public interface UserService {
 
-    static UserDto updateOwnProfile(UserDto dto) {
-    }
-
     UserDto createUser(UserDto userDto);
     UserDto updateUser(Long id,UserDto userDto);
     UserDto getUserById(Long id);
@@ -21,4 +18,6 @@ public interface UserService {
     User getByEmail(String email);
     User getByUsername(String username);
 
+    UserDto updateOwnProfile(UserDto userDto);
+    UserDto updateUserStatus(Long id, String status);
 }

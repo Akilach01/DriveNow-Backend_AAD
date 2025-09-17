@@ -18,7 +18,7 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String vehicleId;
     private String model;
-    private String year;
+    private int year;
     private String category;
     private String colour;
     private String sideView;

@@ -44,10 +44,19 @@ public class UserController {
     @PreAuthorize("hasRole('USER')")
     @PutMapping("/me")
     public UserDto updateOwnProfile(@RequestBody UserDto dto){
-        return UserService.updateOwnProfile(dto);
+        return userService.updateOwnProfile(dto);
     }
 
-
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/{id}/block")
+    public UserDto blockUser(@PathVariable Long id){
+        return userService.updateUserStatus(id,"Blocked");
+    }
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/{id}/unblock")
+    public UserDto unblockUser(@PathVariable Long id) {
+        return userService.updateUserStatus(id, "ACTIVE");
+    }
 
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
