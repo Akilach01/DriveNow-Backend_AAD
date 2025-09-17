@@ -12,6 +12,9 @@ public interface RentDetailService {
     List<RentDetailsDto> getAllBookings();
     RentDetailsDto getBookingById(Long id);
     RentDetailsDto cancelBooking(Long id);
-
+    RentDetailsDto approveBooking(Long id);
+    RentDetailsDto rejectBooking(Long id);
+    RentDetailsDto assignDriver(Long bookingId, Long driverId);
+   List<RentDetailsDto> getUserBookings();
 
 }
