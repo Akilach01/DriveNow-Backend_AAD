@@ -175,9 +175,13 @@ public class UserServiceImpl implements UserService {
   }
   User saved = userRepository.save(user);
   try{
+    String subject = status.equals(User.Status.BLOCKED.name()) ? "Account is Blocked" : "Account Unblocked";
+      String message = status.equals(User.Status.BLOCKED.name())
+              ? "Your account has been blocked by admin." : "account has been unblocked.";
+      notificationService.sendEmailNotification(saved.getUserId(), subject,message );
 
+  } catch (Exception e) {
   }
-
         return mapToDto(saved);
     }
 }
