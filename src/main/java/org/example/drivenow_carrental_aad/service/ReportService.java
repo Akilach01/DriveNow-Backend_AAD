@@ -1,8 +1,11 @@
 package org.example.drivenow_carrental_aad.service;
 
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.example.drivenow_carrental_aad.dto.RentDetailsDto;
 import org.example.drivenow_carrental_aad.service.impl.RentDetailServiceImpl;
 import org.springframework.stereotype.Service;
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +28,6 @@ public class ReportService {
 
          JasperReport jasperReport = JasperCompileManager.compileReport("src/main/resources/reports/booking_report.jrxml");
          JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
-         JasperExportManager.exportReportToPdfFile(jasperPrint, outputPath);
+         JasperExportManager.exportReportToPdfFile(jasperPrint, outPath);
      }
 }

@@ -1,5 +1,8 @@
 package org.example.drivenow_carrental_aad.util;
 
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +18,7 @@ public class JwtTokenProvider {
     private int jwtExpirationMs;
 
     public String generateToken(String username){
-        return jwts.builder()
+        return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
@@ -27,11 +30,14 @@ public class JwtTokenProvider {
     }
 
     public boolean validateToken(String token) {
-        try{
-        return Jwts.parser().setSigningKey(jwtSecret)..parseClaimsJws(token);
-        return true;
-    } catch (JwtException | IllegalArgumentException e) {
-           return false ;
+        try {
+            Jwts.parserBuilder()
+                    .setSigningKey(getSigningKey())
+                    .build()
+                    .parseClaimsJws(token);
+            return true;  // Fixed: Move return true; here, after parse (no extra return)
+        } catch (JwtException | IllegalArgumentException e) {
+            return false;
         }
     }
 }
