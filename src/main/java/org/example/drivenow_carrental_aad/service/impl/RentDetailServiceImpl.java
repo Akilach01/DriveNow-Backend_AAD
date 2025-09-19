@@ -209,7 +209,7 @@ public class RentDetailServiceImpl implements RentDetailService {
     @Override
     public List<RentDetailsDto> getUserBookings() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userRepository.findByUsername(username)
+        User user = userRepository.findByUserName(username)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
         return rentRepository.findByUser(user).stream()
                 .map(this::mapToDto)
