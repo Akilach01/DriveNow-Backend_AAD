@@ -1,6 +1,7 @@
 package org.example.drivenow_carrental_aad.controller;
 
 import jakarta.validation.Valid;
+import org.example.drivenow_carrental_aad.dto.DriverDto;
 import org.example.drivenow_carrental_aad.dto.RentDetailsDto;
 import org.example.drivenow_carrental_aad.dto.UserDto;
 import org.example.drivenow_carrental_aad.service.AdminService;
@@ -70,6 +71,30 @@ public ResponseEntity<UserDto> updateUserStatus(@PathVariable Long id, @RequestB
 }
 
 @PostMapping("/drivers")
+ public ResponseEntity <DriverDto> createDriver(@Valid @RequestBody DriverDto driverDto){
+    return ResponseEntity.ok(driverService.createDriver(driverDto));
+}
+
+@PutMapping("/drivers/{id}")
+  public ResponseEntity <DriverDto> updateDriver(@PathVariable Long id,@Valid @RequestBody DriverDto driverDto){
+return ResponseEntity.ok(driverService.updateDriver(id, driverDto));
+}
+
+@GetMapping("/drivers")
+    public ResponseEntity<List<DriverDto>> getAllDrivers(){
+    return ResponseEntity.ok(driverService.getAllDrivers());
+}
+
+@GetMapping("/drivers/available")
+ public ResponseEntity <List<DriverDto>> getAvailableDrivers(){
+return ResponseEntity.ok(driverService.getAvailableDrivers());
+}
+
+@DeleteMapping("/drivers/{id}")
+    public ResponseEntity<Void> deleteDriver(@PathVariable Long id){
+    driverService.deleteDriver(id);
+    return ResponseEntity.noContent().build();
+}
 
 
 }
