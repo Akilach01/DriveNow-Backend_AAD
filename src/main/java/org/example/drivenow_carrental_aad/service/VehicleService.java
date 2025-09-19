@@ -10,9 +10,9 @@ public interface VehicleService {
 
     VehicleDto createVehicle(VehicleDto vehicleDto);
     VehicleDto updateVehicle(Long id, VehicleDto vehicleDto);
-    VehicleDto getVehiclById(Long id);
     List<VehicleDto> getAllVehicles();
     List<VehicleDto> getAvailableVehicles();
     void deleteVehicle(Long id);
 
+    VehicleDto getVehicleById(Long id);
 }
