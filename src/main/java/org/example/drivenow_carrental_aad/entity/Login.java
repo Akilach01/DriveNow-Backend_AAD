@@ -14,6 +14,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 public class Login {
+    @Id
     private String username;
     private String password;
     private String role;

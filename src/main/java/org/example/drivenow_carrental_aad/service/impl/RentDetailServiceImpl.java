@@ -30,7 +30,7 @@ public class RentDetailServiceImpl implements RentDetailService {
     private final NotificationService notificationService;
     
 
-    public RentDetailServiceImpl(RentRepository repository,UserRepository userRepository,VehicleRepository vehicleRepository,DriverRepository driverRepository, NotificationService notificationService) {
+    public RentDetailServiceImpl(RentRepository rentRepository,UserRepository userRepository,VehicleRepository vehicleRepository,DriverRepository driverRepository, NotificationService notificationService) {
         this.rentRepository = rentRepository;
         this.userRepository = userRepository;
         this.vehicleRepository = vehicleRepository;

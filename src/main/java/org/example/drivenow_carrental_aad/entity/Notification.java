@@ -30,7 +30,8 @@ public class Notification {
 
   private LocalDateTime sentAt =LocalDateTime.now();
 
-  private boolean read = false;
+  @Column(name = "read", nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0")
+  private boolean read;
 
   public enum Type{EMAIL,IN_APP}
 }
