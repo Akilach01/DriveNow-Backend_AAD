@@ -3,7 +3,9 @@ package org.example.drivenow_carrental_aad.service.impl;
 import org.example.drivenow_carrental_aad.dto.RentDetailsDto;
 import org.example.drivenow_carrental_aad.service.AdminService;
 import org.example.drivenow_carrental_aad.service.RentDetailService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AdminServiceImpl implements AdminService {
 
     private final RentDetailService rentDetailService;

@@ -4,10 +4,12 @@ import org.example.drivenow_carrental_aad.dto.DriverDto;
 import org.example.drivenow_carrental_aad.entity.Driver;
 import org.example.drivenow_carrental_aad.repo.DriverRepository;
 import org.example.drivenow_carrental_aad.service.DriverService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class DriverServiceImpl implements DriverService {
 
     private final DriverRepository driverRepository;

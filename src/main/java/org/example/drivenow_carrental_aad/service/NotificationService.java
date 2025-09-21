@@ -33,7 +33,7 @@ public class NotificationService {
         Notification notification = new Notification();
         notification.setUser(user);
         notification.setMessage(message);
-        notification.setType(Notification.Type.EMAIL);
+        notification.setType(Notification.NotificationType.EMAIL);
         notificationRepository.save(notification);
 
         // Send email

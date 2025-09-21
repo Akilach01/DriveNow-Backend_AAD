@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -26,12 +25,12 @@ public class Notification {
     private User user;
 
   @Enumerated(EnumType.STRING)
-    private Type type;
+    private NotificationType type;
 
   private LocalDateTime sentAt =LocalDateTime.now();
 
   @Column(name = "read", nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0")
   private boolean read;
 
-  public enum Type{EMAIL,IN_APP}
+  public enum NotificationType{EMAIL,IN_APP}
 }
